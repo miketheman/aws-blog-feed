@@ -1,0 +1,16 @@
+{% if blog_entries|count == 0 %}
+  <article>No blog entries found.</article>
+{% else %}
+  {% for entry in blog_entries %}
+    <article>
+      <header>
+        <a href="{{ entry.link }}" rel="nofollow" target="_blank">{{ entry.title }}</a>
+      </header>
+      {{ entry.summary }}
+      <footer>
+        Published: {{ entry.published }}
+      </footer>
+    </article>
+    <hr />
+  {% endfor %}
+{% endif %}

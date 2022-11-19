@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/water.css@2.1.1/out/water.min.css"
+          integrity="sha256-QST90Wzz4PEr5KlclQaOCsjc00FTyf86Wrj41oqZB4w="
+          crossorigin="anonymous">
+    <script src="https://unpkg.com/htmx.org@1.8.4"
+            integrity="sha384-wg5Y/JwF7VxGk4zLsJEcAojRtlVp1FKKdGy1qN+OMtdq72WRvX/EdRdqg/LOhYeV"
+            crossorigin="anonymous">
+    </script>
+    <title>Recent AWS Container Blogs</title>
+  </head>
+  <body>
+    <section>
+      <h1>Recent AWS Container Blogs</h1>
+      <small>
+        <label for="term">Filter recent container blogs by term:</label>
+        <div id="radioTerm"
+             hx-get="/entries"
+             hx-target="#entries"
+             hx-include="this">
+          {% for term in ['ECS', 'AppRunner', 'Fargate', 'ECR', 'EKS'] %}
+            <input id="{{ term }}"
+                   name="term"
+                   type="radio"
+                   value="{{ term }}"
+                   {% if term == "ECS" %} checked{% endif %}/>
+            <label for="{{ term }}">{{ term }}</label>
+          {% endfor %}
+        </div>
+      </small>
+    </section>
+    <hr />
+    <section>
+      <div id="entries">{% include 'entries.html.jinja' %}</div>
+    </section>
+  </body>
+</html>
