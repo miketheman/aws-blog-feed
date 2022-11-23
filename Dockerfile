@@ -17,7 +17,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 COPY --from=poetry /app /app
 
 # Copy source code
-COPY main.py ./
+COPY main.py favicon.ico ./
 COPY templates ./templates
 
 # Run the app
