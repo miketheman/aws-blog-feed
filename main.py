@@ -19,19 +19,20 @@ def get_feed(url):
     return feed
 
 
-def filter_feed(entries, filter_term: str) -> list:
-    # Iterate through entries and find ones that contains the `filter_term``
-    relevant_entries = [
+def filter_feed(entries, filter_term: str) -> set:
+    # Iterate through entries and find ones that contains the `filter_term`.
+    # Return a set of unique entries.
+    relevant_entries = {
         entry
         for entry in entries
         for tag in entry.tags
         if filter_term.lower() in tag.get("term", "").lower()
-    ]
+    }
 
     return relevant_entries
 
 
-def get_blog_entries(filter_term: str) -> list:
+def get_blog_entries(filter_term: str) -> set:
     feed = get_feed(AWS_BLOG_CONTAINERS_URL)
     relevant_entries = filter_feed(feed.entries, filter_term)
 
