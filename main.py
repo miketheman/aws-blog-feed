@@ -2,7 +2,7 @@ from datetime import timedelta
 
 from cachetools import cached, TTLCache
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 from feedparser import parse
 
@@ -61,6 +61,11 @@ def read_entries(request: Request, term: str = "ecs"):
 def read_json(term: str = "ecs"):
     relevant_blog_entries = get_blog_entries(filter_term=term)
     return {"blog_entries": relevant_blog_entries}
+
+
+@app.get("/favicon.ico")
+def favicon():
+    return FileResponse("favicon.ico")
 
 
 if __name__ == "__main__":
