@@ -12,7 +12,7 @@ fastapi = "^0.111.1"
 uvicorn = {extras = ["standard"], version = "^0.30.3"}
 feedparser = "^6.0.11"
 jinja2 = "^3.1.4"
-cachetools = "^5.3.3"
+cachetools = "^5.4.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.2"
